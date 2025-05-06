@@ -9,6 +9,7 @@ import Link from "next/link"
 import prepInImg from "../public/prepIn.jpg"
 import thinkifyImg from "../public/Thinkify.jpg"
 import Image from "next/image"
+import portfolioImg from "../public/portfolioImg.jpg"
 
 export default function Projects() {
   const sectionRef = useRef<HTMLElement>(null)
@@ -51,20 +52,21 @@ export default function Projects() {
       ],
     },
     {
-      title: "Kizuna Chat Application",
-      description:
-        "A real-time chat application built with the PERN stack and Socket.io",
-      image: thinkifyImg,
-      tags: ["React", "Node.js", "PostgreSQL", "Socket.io", "AWS"],
-      liveDemo: "https://kizuna.work.gd",
-      github: "https://github.com/Sahilsaw/Kizuna",
+      title: "Personal Portfolio",
+      description: "A dynamic and interactive personal portfolio built with TypeScript, React, and Tailwind CSS.",
+      image: portfolioImg, // replace with your portfolio image
+      tags: ["TypeScript", "React", "Tailwind CSS", "Vercel"],
+      liveDemo: "https://yourportfolio.vercel.app", // replace with your live demo URL on Vercel
+      github: "https://github.com/YourUsername/portfolio", // replace with your GitHub URL
       features: [
-        "Developed a real-time chat app using the PERN stack with Socket.io, handling 100+ concurrent users.",
-        "Deployed on AWS EC2 with Nginx and PM2, improving server uptime by 99.9%.",
-        "Implemented JWT authentication, reducing authentication time by 30%.",
-        "Secured the application with CORS, cookie-based authentication, and HTTPS, ensuring end-to-end encryption.",
+        "Built with TypeScript for static typing, improving maintainability and code quality.",
+        "Implemented responsive design using Tailwind CSS, optimizing user experience across devices.",
+        "Integrated custom animations using Framer Motion, enhancing visual appeal.",
+        "Deployed on Vercel for fast and scalable performance.",
+        "Includes sections for skills, projects, contact info, and an interactive timeline.",
       ],
-    },
+    }
+    
   ]
 
   const [activeProject, setActiveProject] = useState(0)
