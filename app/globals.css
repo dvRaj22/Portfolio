@@ -200,3 +200,6 @@
   box-shadow: 0 4px 12px rgba(var(--primary-rgb), 0.2);
 }
 
+.vertical-timeline::before {
+  background: #2196F3 !important; /* bright blue line */
+}

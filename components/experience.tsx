@@ -1,10 +1,15 @@
 "use client"
 
-import React from "react"
-import { VerticalTimeline, VerticalTimelineElement } from "react-vertical-timeline-component"
+import React, { useEffect, useState } from "react"
+import {
+  VerticalTimeline,
+  VerticalTimelineElement,
+} from "react-vertical-timeline-component"
 import "react-vertical-timeline-component/style.min.css"
 import { MdOutlineSchool } from "react-icons/md"
-import { useTheme } from "next-themes"  // Import the useTheme hook
+import { useTheme } from "next-themes" 
+import { motion } from "framer-motion"  
+
 
 const WorkIcon = () => <MdOutlineSchool />
 
@@ -52,19 +57,49 @@ const EducationCard = ({ edu }) => (
 )
 
 const Education = () => {
-  const { theme } = useTheme()  // Get the current theme
+  const { theme, systemTheme } = useTheme()
+  const [mounted, setMounted] = useState(false)
 
-  // Set the line color based on the current theme
-  const lineColor = theme === "light" ? "#2196F3" : "#374151" // blue for light, dark gray for dark theme
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  if (!mounted) return null // Prevents hydration mismatch
+
+  const currentTheme = theme === "system" ? systemTheme : theme
+  const lineColor = currentTheme === "light" ? "#2196F3" : "#374151"
 
   return (
     <div id="education" className="px-3 pt-0 md:pt-20">
-      <div className="w-full flex flex-col items-center justify-center mb-10">
-        <h1 className="font-bold text-3xl md:text-5xl text-foreground">Education</h1>
-        <h2 className="text-muted-foreground font-semibold text-center text-xl md:text-2xl">
-          My journey through education
-        </h2>
-      </div>
+     <motion.div className="text-center mb-16" style={{ opacity: 1, y: 0 }}>
+  <motion.h2
+    initial={{ opacity: 0, y: 20 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.5 }}
+    viewport={{ once: true }}
+    className="text-4xl md:text-5xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-primary to-purple-500"
+  >
+    Education
+  </motion.h2>
+
+  <motion.div
+    initial={{ width: 0 }}
+    whileInView={{ width: "100px" }}
+    transition={{ duration: 0.5, delay: 0.2 }}
+    viewport={{ once: true }}
+    className="h-1 bg-gradient-to-r from-primary to-purple-500 mx-auto mb-8"
+  />
+
+  <motion.h3
+    initial={{ opacity: 0 }}
+    whileInView={{ opacity: 1 }}
+    transition={{ duration: 0.5, delay: 0.3 }}
+    viewport={{ once: true }}
+    className="text-lg text-muted-foreground max-w-2xl mx-auto"
+  >
+    My journey through education
+  </motion.h3>
+</motion.div>
 
       <VerticalTimeline lineColor={lineColor}>
         {education.map((edu) => (
